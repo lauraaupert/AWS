@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import GoogleApiWrapper from "./components/maps"
 import Search from "./components/Search";
+import AddModal from "./components/modal";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Cirque Finder</h2>
       </div>
+      <AddModal />
       <Search />
       <GoogleApiWrapper />
     </div>
