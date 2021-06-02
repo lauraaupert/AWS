@@ -11,7 +11,7 @@ function AddYourself(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
             Add Yourself!
           </Modal.Title>
@@ -32,7 +32,7 @@ function AddYourself(props) {
   
     return (
       <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
+        <Button variant="primary" size="lg" block onClick={() => setModalShow(true)}>
           Add Yourself!
         </Button>
   
