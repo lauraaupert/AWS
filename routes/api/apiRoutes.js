@@ -1,7 +1,7 @@
 var Friend = require("../../models/friend");
 const router = require("express").Router();
 
-router.post("/friends", function(req, res) {
+router.post("/api/friends", function(req, res) {
     Friend.create(req.body)
       .then(friend => {
         res.status(200).json(friend)
