@@ -26,6 +26,7 @@
     "google-maps-react": "^2.0.6",
     "if-env": "^1.0.4",
     "mongoose": "^5.12.12",
-    "react-bootstrap": "^1.6.0"
+    "react-bootstrap": "^1.6.0",
+    "react-geocode": "^0.2.3"
   }
 }

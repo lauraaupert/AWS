@@ -15,7 +15,7 @@ const FriendSchema = new Schema({
     unique: true,
     match: [
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      "Please provide valid email"
+      "Please provide a valid email"
     ]
   },
   show: {

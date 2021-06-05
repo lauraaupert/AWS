@@ -14,4 +14,27 @@ router.post("/api/friends", function(req, res) {
       });
   });
 
+  router.get("/api/friends", function(req, res) {
+    Friend.find({}).then(friends => res.json(friends))
+    
+      // res.json(
+      //   {
+      //     name: req.name
+      //   }
+      // )
+  })
+
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      // res.json({
+      //   _id: req.user._id,
+      //   name: req.friend.name,
+      //   email: req.friend.email,
+      //   success: true,
+      //   show: req.friend.show,
+      //   address: req.friend.address
+      // });
+  
+
+
   module.exports = router;

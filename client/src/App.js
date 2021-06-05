@@ -4,6 +4,8 @@ import "./App.css";
 import GoogleApiWrapper from "./components/maps"
 import Search from "./components/Search";
 import AddModal from "./components/modal";
+import GetLocations from "./components/locations";
+
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       </div>
       <AddModal />
       <Search />
+      <GetLocations />
+
       <GoogleApiWrapper />
     </div>
   );

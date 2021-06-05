@@ -1,11 +1,17 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default {
 
-saveFriend: function (friendData) {
-    return axios.put("/api/friends", friendData);
+saveFriend: function (name, email, show, address) {
+    console.log(name, email, show, address)
+    return axios.post('/api/friends', {
+        name: name, 
+        email: email, 
+        show: show, 
+        address: address
+    });
   },
   getFriends: function () {
-    return axios.get("/api/friends");
+    return axios.get('/api/friends');
   },
 }
