@@ -1,16 +1,23 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import api from '../utils/api'
+import DisplayCurrent from "./displayCurrent"
+import MapModal from "./MapModal"
 
 function AddForm({ handleChange }) {
         const [name, setName] = useState("")
         const [email, setEmail] = useState("")
         const [show, setShow] = useState("")
         const [address, setAddress] = useState("")
+
+        // useEffect(() => {
+        //   new CurrentLocation()
+        //   .then(console.log(CurrentLocation))
+        // })
       
-        function AddYourself(e) {
+        async function AddYourself(e) {
           e.preventDefault();
           console.log("Friend Data: ", name, email, show, address)
         
@@ -39,7 +46,10 @@ function AddForm({ handleChange }) {
   <Form.Group controlId="formBasicEmail">
     <Form.Label>Where are you located?</Form.Label>
     <Form.Control type="email" placeholder="Address" onChange={(e) => setAddress(e.target.value)} value={address}/>
-  </Form.Group>
+    
+    <MapModal/>
+</Form.Group>
+
 
   <Form.Group controlId="formBasicCheckbox">
     <Form.Check type="checkbox" label="Check me out" />
