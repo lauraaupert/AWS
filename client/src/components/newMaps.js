@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/ap
 import api from "../utils/api"
 
 
-
+const googleKey = process.env.REACT_APP_APIKEY
 
 const MapContainer = () => {
     const [friends, setFriends] = useState({ results: [] })
@@ -17,7 +17,6 @@ const MapContainer = () => {
     useEffect(() => {
         api.getFriends()
     .then(res => {
-    console.log(res.data)
     setFriends({ results: res.data })
     // setLocations({ results: res.data.latitude, res.data.longitude })
 })
@@ -38,13 +37,12 @@ console.log(locations)
   
   return (
      <LoadScript
-       googleMapsApiKey = {process.env.REACT_APP_APIKEY}>
+       googleMapsApiKey = {googleKey}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={2.3}
           center={defaultCenter}>
           {friends.results.map(item => {
-              console.log(item)
               return (
               <Marker 
                 key={item.name} 
