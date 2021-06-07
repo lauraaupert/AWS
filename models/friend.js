@@ -12,7 +12,7 @@ const FriendSchema = new Schema({
   email: {
     type: String,
     required: [true, "Please provide an email"],
-    unique: true,
+    // unique: true,
     match: [
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
       "Please provide a valid email"
@@ -22,10 +22,23 @@ const FriendSchema = new Schema({
       type: String,
       required: [true, "Please provide at least one show"]
   },
-  address: {
+  latitude: {
       type: String,
-      required: [true, "Please enter your address. It will not be displayed."]
+      // required: [true, "Please enter your address. It will not be displayed."]
+  },
+  location: 
+    {
+      lat: {
+        type: Number,
+        // required: [true, "Please enter your address. It will not be displayed."]
+      },
+      lng: {
+      type: Number,
+      // required: [true, "Please enter your address. It will not be displayed."]
+      },
   }
+
+
 })
 
 // UserSchema.methods.validPassword = function (password) {

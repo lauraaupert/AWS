@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import GoogleApiWrapper from "./components/maps"
 import Search from "./components/Search";
 import AddModal from "./components/modal";
-import GetLocations from "./components/locations";
+import MapContainer from "./components/newMaps";
 
 
 function App() {
@@ -16,9 +15,7 @@ function App() {
       </div>
       <AddModal />
       <Search />
-      <GetLocations />
-
-      <GoogleApiWrapper />
+    <MapContainer />
     </div>
   );
 }

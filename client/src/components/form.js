@@ -3,39 +3,31 @@ import React, { useState, useEffect } from "react"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import api from '../utils/api'
-import DisplayCurrent from "./displayCurrent"
-import MapModal from "./MapModal"
 
 function AddForm({ handleChange }) {
         const [name, setName] = useState("")
         const [email, setEmail] = useState("")
         const [show, setShow] = useState("")
         const [address, setAddress] = useState("")
+        const [currentLatitude, setCurrentLatitude] = useState("")
+        const [currentLongitude, setCurrentLongitude] = useState("")
         const [latitude, setLatitude] = useState("")
         const [longitude, setLongitude] = useState("")
     
-        // useEffect(() => {
-        //   new CurrentLocation()
-        //   .then(console.log(CurrentLocation))
-        // })
         useEffect(() => {
 
         navigator.geolocation.getCurrentPosition(position => {
           const { latitude, longitude } = position.coords;
           console.log(position.coords)
-          const lat = position.coords.latitude;
-          const long = position.coords.longitude;
-          setLatitude(position.coords.latitude)
-          setLongitude(position.coords.longitude)
-          console.log(latitude + ", " + longitude)
-          // Show a map centered at latitude / longitude.
+          setCurrentLatitude(position.coords.latitude)
+          setCurrentLongitude(position.coords.longitude)
         })
-
      }, [])
 
         function onAddress(e) {
           e.preventDefault();
-          setAddress(latitude + ", " + longitude)
+          setLatitude(currentLatitude);
+          setLongitude(currentLongitude)
           console.log("Address: " + address)
         }
 
@@ -52,8 +44,7 @@ function AddForm({ handleChange }) {
 
               console.log("Friend Data: ", name, email, show, address)
         
-              api.saveFriend(name, email, show, address)
-              alert("Success!")
+              api.saveFriend(name, email, show, latitude, longitude)
             } else {
               const location = address;
               console.log(location)
@@ -61,22 +52,13 @@ function AddForm({ handleChange }) {
               .then(res => {
                 const apiLatitude = res.data.data[0].latitude
                 const apiLongitude = res.data.data[0].longitude
-                const address = apiLatitude + ", " + apiLongitude
-                console.log("Friend Data: ", name, email, show, address)
+                console.log("Friend Data: ", name, email, show, apiLatitude, apiLongitude)
         
-                api.saveFriend(name, email, show, address)
+                api.saveFriend(name, email, show, apiLatitude, apiLongitude)
   
-                  // if (res.data === undefined) {
-                  //     setGames({ results: [] });
-                  //     console.log(setGames)
-                  // } else {
-                      // setGames({ results: res.data.results })
-                      // console.log(setGames)
-                  // }
               })
               .catch(err => console.log(err));
 
-              // alert("Success!")
 
             }
             }
@@ -110,7 +92,6 @@ function AddForm({ handleChange }) {
 
     <Form.Control type="email" placeholder="Address" onChange={(e) => setAddress(e.target.value)} value={address}/>
     <Button variant="success" onClick={onAddress}>Use Current Location 
-    {/* <MapModal /> */}
     </Button> 
 
 </Form.Group>
@@ -118,11 +99,7 @@ function AddForm({ handleChange }) {
 
 
 
-  {/* <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group> */}
-  <Button variant="primary" type="submit" onClick={AddYourself}
->
+  <Button variant="primary" type="submit" onClick={AddYourself}>
     Submit
   </Button>
 </Form>

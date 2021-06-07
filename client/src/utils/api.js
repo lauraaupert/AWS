@@ -2,13 +2,16 @@ import axios from 'axios';
 
 export default {
 
-saveFriend: function (name, email, show, address) {
-    console.log(name, email, show, address)
+saveFriend: function (name, email, show, latitude, longitude) {
+    console.log(name, email, show, latitude)
     return axios.post('/api/friends', {
         name: name, 
         email: email, 
         show: show, 
-        address: address
+        location: {
+            lat: latitude,
+            lng: longitude
+        }
     });
   },
   getFriends: function () {
@@ -17,7 +20,8 @@ saveFriend: function (name, email, show, address) {
   setLocation: function (name, latitude, longitude) {
     return axios.put("/api/friends", 
     { name: name , 
-     address: latitude + longitude })
+     latitude: latitude,
+     longitude: longitude })
   },
   geocode: function(address) {
     return axios.get(

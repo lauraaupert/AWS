@@ -22,7 +22,11 @@ router.post("/api/friends", function(req, res) {
       //     name: req.name
       //   }
       // )
-  })
+  });
+  router.post("/api/friends"), function(req,res) {
+    Friend.findOneAndUpdate(res.data.name, req.body)
+    .then(console.log(req.data))
+  }
 
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
