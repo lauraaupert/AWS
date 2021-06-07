@@ -18,20 +18,23 @@ function AddForm({ handleChange }) {
         //   new CurrentLocation()
         //   .then(console.log(CurrentLocation))
         // })
-       
+        useEffect(() => {
+
+        navigator.geolocation.getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords;
+          console.log(position.coords)
+          const lat = position.coords.latitude;
+          const long = position.coords.longitude;
+          setLatitude(position.coords.latitude)
+          setLongitude(position.coords.longitude)
+          console.log(latitude + ", " + longitude)
+          // Show a map centered at latitude / longitude.
+        })
+
+     }, [])
 
         function onAddress(e) {
           e.preventDefault();
-          navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords;
-            console.log(position.coords)
-            const lat = position.coords.latitude;
-            const long = position.coords.longitude;
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-            console.log(latitude + ", " + longitude)
-            // Show a map centered at latitude / longitude.
-          })
           setAddress(latitude + ", " + longitude)
           console.log("Address: " + address)
         }
@@ -56,13 +59,8 @@ function AddForm({ handleChange }) {
               console.log(location)
               api.geocode(location)
               .then(res => {
-                // console.log(res.data.data[0].latitude)
                 const apiLatitude = res.data.data[0].latitude
                 const apiLongitude = res.data.data[0].longitude
-                // setLatitude(res.data.data[0].latitude)
-                // setLongitude(res.data.data[0].longitude)
-                
-                console.log(latitude)
                 const address = apiLatitude + ", " + apiLongitude
                 console.log("Friend Data: ", name, email, show, address)
         
@@ -81,19 +79,10 @@ function AddForm({ handleChange }) {
               // alert("Success!")
 
             }
-
-         
             }
           }
   
-          //   function coordinates() {
 
-          //     navigator.geolocation.getCurrentPosition(position => {
-          //      const { latitude, longitude } = position.coords;
-          //      console.log(position.coords)
-          //      // Show a map centered at latitude / longitude.
-          //    })
-          // }
       
         
       
