@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import api from "../utils/api"
-
+import Search from "./Search"
+import { MarkerContext } from "../utils/MarkerContext"
 
 const googleKey = process.env.REACT_APP_APIKEY
 
@@ -13,6 +14,11 @@ const MapContainer = () => {
     const onSelect = item => {
         setSelected(item);
       }
+//       const markers = useContext(MarkerContext)
+// console.log(markers)
+
+  const marker = useContext(MarkerContext);
+      console.log(marker.list)
 
     useEffect(() => {
         api.getFriends()
@@ -23,6 +29,9 @@ const MapContainer = () => {
 .catch(err => console.log(err));
 
 }, [])
+
+//THIS IS WHAT I WANT THE CONTEXT DATA TO BE STORED IN
+// const friends = useContext(MarkerContext)
 
 console.log(friends.results)
 console.log(locations)
@@ -36,15 +45,25 @@ console.log(locations)
   }
   
   return (
+
      <LoadScript
        googleMapsApiKey = {googleKey}>
+
+           <Search />
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={2.3}
           center={defaultCenter}>
-          {friends.results.map(item => {
+          {/* {friends.results.map(item => { */}
+         {marker.list.map(item => {
+
               return (
               <Marker 
+            //   icon={
+            //     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+            //     // scale: 7,
+            //     // fillColor: "yellow",
+            //               }   
                 key={item.name} 
                 position={item.location} 
                 onClick={() => onSelect(item)}/>
@@ -69,6 +88,7 @@ console.log(locations)
          }
         </GoogleMap>
      </LoadScript>
+
   )
 }
 

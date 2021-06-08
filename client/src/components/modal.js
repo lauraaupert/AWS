@@ -3,7 +3,13 @@ import AddForm from './form'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
+
+
 function AddYourself(props) {
+  function onClick() {
+    props.onHide()
+    window.location.reload();
+  }
     return (
       <Modal
         {...props}
@@ -21,7 +27,7 @@ function AddYourself(props) {
         <AddForm />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={onClick}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

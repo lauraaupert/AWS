@@ -28,7 +28,11 @@ saveFriend: function (name, email, show, latitude, longitude) {
       "http://api.positionstack.com/v1/forward?access_key=" + process.env.REACT_APP_GEOKEY +
       "&query=" + address 
       )
-  }
+  },
+  getFriend: function (search) {
+    return axios.get('/api/friends', search);
+  },
+
 }
 
 
