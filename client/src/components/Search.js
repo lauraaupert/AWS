@@ -33,6 +33,7 @@ function Search() {
       console.log(res.data)
       setAllData(res.data);
       setFilteredData(res.data);
+      context.setList(res.data)
     })
     .catch(error => {
       console.log('Error getting fake data: ' + error);
