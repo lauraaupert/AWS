@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Search from "./components/Search";
-import AddModal from "./components/modal";
-import MapContainer from "./components/newMaps";
-import SearchBar from "./components/SearchBar"
+import AddModal from "./components/AddModal";
+import MapContainer from "./components/MapContainer";
 import { MarkerProvider } from "./utils/MarkerContext"
+import Header from "./components/Header";
 
 
 function App() {
@@ -17,8 +16,9 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Finder</h2>
       </div>
-      <AddModal />
-      <Search />
+      <Header>
+            <AddModal />
+            </Header>
     <MapContainer />
     </MarkerProvider>
 

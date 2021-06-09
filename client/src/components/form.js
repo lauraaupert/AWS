@@ -17,7 +17,6 @@ function AddForm({ handleChange }) {
         useEffect(() => {
 
         navigator.geolocation.getCurrentPosition(position => {
-          const { latitude, longitude } = position.coords;
           console.log(position.coords)
           setCurrentLatitude(position.coords.latitude)
           setCurrentLongitude(position.coords.longitude)
@@ -28,7 +27,7 @@ function AddForm({ handleChange }) {
           e.preventDefault();
           setLatitude(currentLatitude);
           setLongitude(currentLongitude)
-          console.log("Address: " + address)
+          // console.log("Address: " + address)
         }
 
 
@@ -40,9 +39,9 @@ function AddForm({ handleChange }) {
             alert("Please fill out your name, email, show, and location")
           } else {
             if (latitude, longitude) {
-              const address = latitude + ", " + longitude
+              // const address = latitude + ", " + longitude
 
-              console.log("Friend Data: ", name, email, show, address)
+              // console.log("Friend Data: ", name, email, show, address)
         
               api.saveFriend(name, email, show, latitude, longitude)
             } else {

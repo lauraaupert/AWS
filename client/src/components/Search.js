@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Button, Form } from "react-bootstrap"
 import api from "../utils/api"
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { Marker, InfoWindow } from '@react-google-maps/api';
 import { MarkerContext } from "../utils/MarkerContext"
 
 function Search() {
-  const [search, setSearch] = useState("")
   const [allData,setAllData] = useState([]);
   const [filteredData,setFilteredData] = useState(allData);
   const [ selected, setSelected ] = useState({});
@@ -20,7 +19,7 @@ function Search() {
     let result = [];
     console.log(value)
     result = allData.filter((data) => {
-      return data.name.search(value) != -1;
+      return data.name.search(value) !== -1;
     });
     setFilteredData(result);
     context.setList(result);
@@ -43,7 +42,6 @@ function Search() {
 console.log(filteredData)
   function handleClick(e) {
     e.preventDefault();
-    console.log(search)
 }
 
     return (
@@ -56,7 +54,7 @@ console.log(filteredData)
     />
   </Form.Group>
   <Button variant="primary" type="submit" onClick={handleClick}>
-    Submit
+    Search
   </Button>
 </Form>
 <div>
