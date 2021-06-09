@@ -17,7 +17,6 @@ function App() {
         <h2>Finder</h2>
       </div>
       <Header>
-            <AddModal />
             </Header>
     <MapContainer />
     </MarkerProvider>

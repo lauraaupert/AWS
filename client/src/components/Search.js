@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Button, Form } from "react-bootstrap"
+import { Button, Form, Col, Row } from "react-bootstrap"
 import api from "../utils/api"
 import { Marker, InfoWindow } from '@react-google-maps/api';
 import { MarkerContext } from "../utils/MarkerContext"
@@ -21,6 +21,15 @@ function Search() {
     result = allData.filter((data) => {
       return data.name.search(value) !== -1;
     });
+    console.log(result)
+    if (result.length < 1) {
+      let showResult =[];
+    showResult = allData.filter((data) => {
+      return data.show.search(value) !== -1;
+    });
+    result = showResult;
+    console.log(result)
+    }
     setFilteredData(result);
     context.setList(result);
   }
@@ -47,15 +56,24 @@ console.log(filteredData)
     return (
     <div>
 <Form>
+<Row>
+<Col lg={11}>
   <Form.Group controlId="formBasicEmail">
+  
+    
     <Form.Control type="name" placeholder="Find Someone"
     onChange={(event) =>handleSearch(event)}
     // onChange={(e) => setSearch(e.target.value)} value={search} 
     />
-  </Form.Group>
-  <Button variant="primary" type="submit" onClick={handleClick}>
+    
+    </Form.Group>
+    </Col>
+  <Col lg={1}>
+  <Button variant="primary" type="submit" onClick={handleClick} block>
     Search
   </Button>
+  </Col>
+  </Row>
 </Form>
 <div>
 <ul>
