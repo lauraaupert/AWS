@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Button, Form, Col, Row } from "react-bootstrap"
 import api from "../utils/api"
-import { Marker, InfoWindow } from '@react-google-maps/api';
 import { MarkerContext } from "../utils/MarkerContext"
 
 function Search() {
@@ -75,7 +74,6 @@ function Search() {
       </Form>
     </div>
     )
-    
 }
 
 export default Search;
