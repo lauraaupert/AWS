@@ -4,18 +4,22 @@ import Container from 'react-bootstrap/Container'
 import AddModal from './AddModal'
 
 function Header() {
-    return(
-<Jumbotron fluid>
-  <Container>
-    <h1>Find Each Other</h1>
-    <p>
-Your Circus Family is just a click away    
-</p>
-<AddModal />
 
-  </Container>
-</Jumbotron>
-)
+    return(
+      <Jumbotron fluid>
+
+        <Container style={{height: "200px", paddingTop: "150px", paddingBottom: "200px"}}>
+          <h1 style={{color: "white"}}>Find Each Other</h1>
+          <p style={{color: "white"}}>
+            Your Circus Family is just a click away    
+          </p>
+
+          <AddModal />
+
+        </Container>
+
+      </Jumbotron>
+    )
 }
 export default Header;
 

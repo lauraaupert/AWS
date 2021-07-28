@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import Search from "./Search"
 import { MarkerContext } from "../utils/MarkerContext"
+import AddFile from "./AddFile"
 
 const googleKey = process.env.REACT_APP_APIKEY
 
@@ -27,43 +28,48 @@ const MapContainer = () => {
   return (
     <LoadScript
        googleMapsApiKey = {googleKey}>
-    <Search />
-    <GoogleMap
+
+      <Search />
+
+      <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={2.3}
         center={defaultCenter}>
+
         {marker.list.map(item => {
             return (
-            <Marker 
-            //   icon={
-            //     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-            //     // scale: 7,
-            //     // fillColor: "yellow",
-            //               }   
-                key={item.name} 
-                position={item.location} 
-                onClick={() => onSelect(item)}/>
-              )
-            })
-         }
-         {
-            selected.location && 
+
+                <Marker 
+                  key={item.name} 
+                  position={item.location} 
+                  onClick={() => onSelect(item)}
+                />
+            )
+        })
+        }
+         
+        {selected.location && 
             (
               <InfoWindow
-              position={selected.location}
-              clickable={true}
-              onCloseClick={() => setSelected({})}
-            >
+                position={selected.location}
+                clickable={true}
+                onCloseClick={() => setSelected({})}
+              >
                 <div>
-              <p style={{fontSize: "20px"}}>{selected.name}</p>
-              <p>{selected.show}</p>
-              <p>{selected.email}</p>
-              </div>
-            </InfoWindow>
+                  <p style={{fontSize: "20px"}}>{selected.name}</p>
+                  <p>{selected.show}</p>
+                  <p>{selected.email}</p>
+
+                  <AddFile />
+
+                </div>
+              </InfoWindow>
             )
-         }
-        </GoogleMap>
-     </LoadScript>
+        }
+
+      </GoogleMap>
+
+    </LoadScript>
 
   )
 }
