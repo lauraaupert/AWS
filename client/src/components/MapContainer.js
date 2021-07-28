@@ -5,6 +5,7 @@ import { MarkerContext } from "../utils/MarkerContext"
 import AddFile from "./AddFile"
 
 const googleKey = process.env.REACT_APP_APIKEY
+const styles = require('./GoogleMapStyles.json')
 
 const MapContainer = () => {
   const [ selected, setSelected ] = useState({});
@@ -18,7 +19,8 @@ const MapContainer = () => {
 
   const mapStyles = {        
     height: "70vh",
-    width: "100%"
+    width: "100%",
+    opacity: ".85"
   };
   
   const defaultCenter = {
@@ -33,6 +35,9 @@ const MapContainer = () => {
 
       <GoogleMap
         mapContainerStyle={mapStyles}
+
+        options={{styles: styles}}
+
         zoom={2.3}
         center={defaultCenter}>
 
