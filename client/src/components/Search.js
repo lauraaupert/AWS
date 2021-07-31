@@ -6,6 +6,7 @@ import { MarkerContext } from "../utils/MarkerContext"
 function Search() {
   const [allData,setAllData] = useState([]);
   const [filteredData,setFilteredData] = useState(allData);
+  
 
   const context = useContext(MarkerContext)
 
@@ -31,19 +32,38 @@ function Search() {
     context.setList(result);
   };
 
+  // useEffect(() => {
+  //   api.getFriends()
+  //   .then(res => {
+  //     console.log(res.data)
+  //     setAllData(res.data);
+  //     setFilteredData(res.data);
+  //     context.setList(res.data)
+  //   })
+  //   .catch(error => {
+  //     console.log('Error getting data: ' + error);
+  //     })
+  // }, 
+  // []);
   useEffect(() => {
-    api.getFriends()
-    .then(res => {
-      console.log(res.data)
-      setAllData(res.data);
-      setFilteredData(res.data);
-      context.setList(res.data)
-    })
-    .catch(error => {
-      console.log('Error getting data: ' + error);
-      })
-  }, 
-  []);
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/api/users');
+        const jsonData = await res.json();
+        console.log(jsonData)
+        // sort the array by createdAt property ordered by descending values
+        const data = jsonData.sort((a, b) => (a.createdAt < b.createdAt) ? 1 : -1);
+        setAllData([...data]);
+        setFilteredData([...data]);
+        context.setList([...data])
+        // setIsLoaded(true);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+    console.log(allData)
+  }, []);
 
   function handleClick(e) { 
     e.preventDefault();

@@ -1,0 +1,68 @@
+[
+    {
+        "username": "A. Einstein",
+        "createdAt": 1502293460904,
+        "email": "einstein@thefish.gov",
+        "show": "Kurios",
+        "location": {
+            "lat": 56.460609,
+            "lng": 159.857452
+        },
+        "thought": 
+            "It’s not that I’m so smart, it’s just that I stay with problems longer."
+    },
+    {
+        "username": "Steph Curry",
+        "createdAt": 1601093467954,
+        "email": "Step@askmary.org",
+        "show": "Kurios",
+        "location": {
+            "lat": 37.539619,
+            "lng": 127.009676
+        },
+        "thought": "Success is not an accident, success is a choice."
+    },
+    {
+        "username": "Joyce Meyer",
+        "createdAt": 1602003067054,
+        "email": "ulysses@wasntme.org",
+        "show": "Ovo",
+        "location": {
+            "lat": 48.300451,
+            "lng": 4.078308
+        },
+        "thought": "If you are facing a new challenge or being asked to do something that you have never done before don’t be afraid to step out. You have more capability than you think you do but you will never see it unless you place a demand on yourself for more."
+    },
+    {
+        "username": "Voltaire",
+        "createdAt": 1602003407954,
+        "email": "candide@zarathustra.fr",
+        "show": "Kooza",
+        "location": {
+            "lat": 48.855256,
+            "lng": 2.343438
+        },
+        "thought": "Most of the important things in the world have been accomplished by people who have kept on trying when there seemed no hope at all."
+    },
+    {
+        "username": "D. Carnegie",
+        "createdAt": 1602000067954,
+        "email": "carnegie@hall.org",
+        "show": "Totem",
+        "location": {
+            "lat": 42.038717,
+            "lng": -74.113716
+        },
+        "thought": "No problem can withstand the assault of sustained thinking."
+    },
+    {
+        "username": "Harry Golden",
+        "createdAt": 1601003667954,
+        "thought": " The only thing that overcomes hard luck is hard work."
+    },
+    {
+        "username": "Ray Davis",
+        "createdAt": 1602303867954,
+        "thought": "A challenge only becomes an obstacle when you bow to it."
+   }
+]
