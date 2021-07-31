@@ -36,7 +36,8 @@ router.get('/api/users/:username', (req, res) => {
         "#ca": "createdAt",
         "#em": "email",
         "#sh": "show",
-        "#loc": "location",
+        "#lat": "lat",
+        "#lng": "lng",
         "#th": "thought"
       },
       ExpressionAttributeValues: {
@@ -63,7 +64,8 @@ router.post('/api/users', (req, res) => {
         "createdAt": Date.now(),
         "email": req.body.email,
         "show": req.body.show,
-        "location": req.body.location,
+        "lat": req.body.lat,
+        "lng": req.body.lng,
         "thought": req.body.thought
       }
     };
