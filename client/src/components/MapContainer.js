@@ -66,7 +66,7 @@ const MapContainer = () => {
                   <p>{selected.show}</p>
                   <p>{selected.email}</p>
                   {selected.image ? 
-                <img src={selected.image}></img> : <AddFile selected={selected} />
+                <img style={{height:"100px"}} src={selected.image}/> : <AddFile selected={selected} />
                 }
 
                   

@@ -86,6 +86,7 @@ router.post('/api/users', (req, res) => {
     const params = {
       TableName: table,
       Key: {
+        //only partition key and sorting keys are needed
         "username": req.body.username,
         "createdAt": req.body.createdAt,
         "email": req.body.email,
