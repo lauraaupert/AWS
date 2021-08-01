@@ -17,8 +17,11 @@ function AddForm() {
       username: "",
       email: "",
       show: "", 
-      lat: "",
-      lng: ""
+      location: 
+      {
+        // lat: "",
+        // lng: ""
+      }
     })
 
     console.log(formState)
@@ -42,7 +45,8 @@ function AddForm() {
         setLatitude(currentLatitude);
         setLongitude(currentLongitude);
         setAddress(currentLatitude, currentLongitude);
-        setFormState({...formState, lat: currentLatitude, lng: currentLongitude})
+        setFormState({...formState, location: {lat: Number(currentLatitude), lng: Number(currentLongitude)}})
+        console.log(formState)
 
     };
 
@@ -51,41 +55,69 @@ function AddForm() {
         if (formState.username === "" || formState.email === "" || formState.show === "" ) {
             alert("Please fill out your name, email, show, and location");
         } else {
-          if (!formState.lat || !formState.lng) {
-            const location = address;
+          if (formState.location.lat || formState.location.lng) {
+        //     const location = address;
 
+        //       api.geocode(location)
+        //       .then(res => {
+        //         setFormState({...formState, lat: res.data.data[0].latitude, lng: res.data.data[0].longitude})
+        //       })
+        //     }
+
+        // if (formState.lat, formState.lng) {
+        console.log(formState)
+        api.postAWS(formState)
+      //   const postData = async () => {
+      //     const res = await fetch('/api/users', {
+      //       method: 'POST',
+      //       headers: {
+      //         Accept: 'application/json',
+      //         'Content-Type': 'application/json'
+      //       },
+      //       body: JSON.stringify(formState)
+      //     })
+      //     const data = await res.json();
+      //     console.log(data);
+      //   }
+      //   postData();
+       } 
+    
+      else {
+              const location = address;
+            console.log(address)
               api.geocode(location)
               .then(res => {
-                setFormState({...formState, lat: res.data.data[0].latitude, lng: res.data.data[0].longitude})
-              })
-            }
 
-        if (formState.lat, formState.lng) {
-        console.log(formState)
-        const postData = async () => {
-          const res = await fetch('/api/users', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formState)
-          })
-          const data = await res.json();
-          console.log(data);
+                
+                const apiLatitude = res.data.data[0].latitude
+                const apiLongitude = res.data.data[0].longitude
+
+                console.log(res, res.data.data[0].latitude)
+                console.log(formState)
+                setFormState({...formState, location: {lat: Number(apiLatitude), lng: Number(apiLongitude)}})
+                console.log(formState)
+              api.postAWS(formState)
+            })
+              
+
+            //   console.log(formState)
+            //   const postData = async () => {
+            //     const res = await fetch('/api/users', {
+            //       method: 'POST',
+            //       headers: {
+            //         Accept: 'application/json',
+            //         'Content-Type': 'application/json'
+            //       },
+            //       body: JSON.stringify(formState)
+            //     })
+            //     const data = await res.json();
+            //     console.log(data);
+            //   }
+            //   postData();
+             } 
+          }
         }
-        postData();
-      } 
-    }
-      // else {
-      //         const location = address;
-
-      //         api.geocode(location)
-      //         .then(res => {
-      //           setFormState({...formState, lat: res.data.data[0].latitude, lng: res.data.data[0].longitude})
-                // const apiLatitude = res.data.data[0].latitude
-                // const apiLongitude = res.data.data[0].longitude
-              }
+      
 
         // if (username === "" || email === "" || show === "" || address === "") {
         //     alert("Please fill out your name, email, show, and location");

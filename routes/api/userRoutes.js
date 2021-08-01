@@ -29,15 +29,15 @@ router.get('/api/users/:username', (req, res) => {
     console.log(`Querying for thought(s) from ${req.params.username}.`);
     const params = {
       TableName: table,
-      ProjectionExpression: "#em, #sh, #loc, #th, #ca",
+      ProjectionExpression: "#em, #sh, #loc, #th, #ca, #im",
       KeyConditionExpression: "#un = :user",
       ExpressionAttributeNames: {
         "#un": "username",
         "#ca": "createdAt",
         "#em": "email",
         "#sh": "show",
-        "#lat": "lat",
-        "#lng": "lng",
+        "#loc": "location",
+        "#im": "image",
         "#th": "thought"
       },
       ExpressionAttributeValues: {
@@ -64,8 +64,8 @@ router.post('/api/users', (req, res) => {
         "createdAt": Date.now(),
         "email": req.body.email,
         "show": req.body.show,
-        "lat": req.body.lat,
-        "lng": req.body.lng,
+        "location": req.body.location,
+        "image": req.body.image,
         "thought": req.body.thought
       }
     };
@@ -76,6 +76,38 @@ router.post('/api/users', (req, res) => {
       } else {
         console.log("Added item:", JSON.stringify(data, null, 2));
         res.json({"Added": JSON.stringify(data, null, 2)});
+        console.log("Added item:", JSON.stringify(data, null, 2));
+
+      }
+    });
+  });
+
+  router.put('/api/users', (req, res) => {
+    const params = {
+      TableName: table,
+      Key: {
+        "username": req.body.username,
+        "createdAt": req.body.createdAt,
+        "email": req.body.email,
+        "show": req.body.show,
+        "location": req.body.location,
+        "thought": req.body.thought
+      },
+      UpdateExpression: "set image = :im",
+      ExpressionAttributeValues: {
+        ":im": req.body.photo
+      }
+    };
+    console.log(params)
+    dynamodb.update(params, (err, data) => {
+      if (err) {
+        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+        res.status(500).json(err); // an error occurred
+      } else {
+        console.log("Added item:", JSON.stringify(data, null, 2));
+        res.json({"Added": JSON.stringify(data, null, 2)});
+        console.log("Added item:", JSON.stringify(data, null, 2));
+
       }
     });
   });

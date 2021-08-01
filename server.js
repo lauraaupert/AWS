@@ -5,6 +5,7 @@ const app = express(); //
 const mongoose = require("mongoose");
 //const routes = require("./routes/api/apiRoutes") //
 const routes = require("./routes/api/userRoutes.js") //
+const routesImg = require("./routes/api/imageRoutes")
 
 const router = require("express").Router();
 require('dotenv').config();
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === "production") {
 // Define API routes here
 // router.use("/api", apiRoutes);
 app.use(routes);
+app.use(routesImg)
 
 // Send every other request to the React app
 // Define any API routes before this runs

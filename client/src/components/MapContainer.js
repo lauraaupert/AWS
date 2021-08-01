@@ -9,6 +9,7 @@ const styles = require('./GoogleMapStyles.json')
 
 const MapContainer = () => {
   const [ selected, setSelected ] = useState({});
+  console.log(selected)
 
   const onSelect = item => {
         setSelected(item);
@@ -45,7 +46,7 @@ const MapContainer = () => {
             return (
 
                 <Marker 
-                  key={item.name} 
+                  key={item.username} 
                   position={item.location} 
                   onClick={() => onSelect(item)}
                 />
@@ -61,11 +62,14 @@ const MapContainer = () => {
                 onCloseClick={() => setSelected({})}
               >
                 <div>
-                  <p style={{fontSize: "20px"}}>{selected.name}</p>
+                  <p style={{fontSize: "20px"}}>{selected.username}</p>
                   <p>{selected.show}</p>
                   <p>{selected.email}</p>
+                  {selected.image ? 
+                <img src={selected.image}></img> : <AddFile selected={selected} />
+                }
 
-                  <AddFile />
+                  
 
                 </div>
               </InfoWindow>

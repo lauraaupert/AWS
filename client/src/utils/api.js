@@ -32,6 +32,36 @@ saveFriend: function (name, email, show, latitude, longitude) {
   getFriend: function (search) {
     return axios.get('/api/friends', search);
   },
+  postAWS: function (formState) {            
+  const postData = async () => {
+    const res = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formState)
+    })
+    const data = await res.json();
+    console.log(data);
+  }
+  postData();
+},
+updateAWS: function (image) {            
+  const updateData = async () => {
+    const res = await fetch('/api/users', {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(image)
+    })
+    const data = await res.json();
+    console.log(data);
+  }
+  updateData();
+},
 
 }
 
