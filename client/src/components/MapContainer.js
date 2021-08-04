@@ -62,11 +62,12 @@ const MapContainer = () => {
                 onCloseClick={() => setSelected({})}
               >
                 <div>
-                  <p style={{fontSize: "20px"}}>{selected.username}</p>
+                  <p style={{fontSize: "20px"}}>{selected.name}</p>
                   <p>{selected.show}</p>
                   <p>{selected.email}</p>
-                  {selected.image ? 
-                <img style={{height:"100px"}} src={selected.image}/> : <AddFile selected={selected} />
+                  {selected.photo ? 
+                <img style={{height:"200px", width:"auto"}} src={selected.photo}/> : <p></p>
+                // <AddFile selected={selected} />
                 }
 
                   

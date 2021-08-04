@@ -36,10 +36,9 @@ const FriendSchema = new Schema({
       type: Number,
       // required: [true, "Please enter your address. It will not be displayed."]
       },
-  },
-  photo: {
-    type: String
   }
+
+
 })
 
 // UserSchema.methods.validPassword = function (password) {

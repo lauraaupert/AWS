@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
 
-saveFriend: function (name, email, show, latitude, longitude) {
+saveFriend: function (name, email, show, latitude, longitude, photo) {
     console.log(name, email, show, latitude)
     return axios.post('/api/friends', {
         name: name, 
@@ -11,7 +11,8 @@ saveFriend: function (name, email, show, latitude, longitude) {
         location: {
             lat: latitude,
             lng: longitude
-        }
+        },
+        photo: photo
     });
   },
   getFriends: function () {
@@ -32,6 +33,13 @@ saveFriend: function (name, email, show, latitude, longitude) {
   getFriend: function (search) {
     return axios.get('/api/friends', search);
   },
+  updateFriend: function(image) {
+    return axios.put("/api/friends", 
+      {name: image.name, 
+        photo: image.photo
+      }
+    )
+  },
   postAWS: function (formState) {            
   const postData = async () => {
     const res = await fetch('/api/users', {
@@ -49,7 +57,8 @@ saveFriend: function (name, email, show, latitude, longitude) {
 },
 updateAWS: function (image) {            
   const updateData = async () => {
-    const res = await fetch('/api/users', {
+    // const res = await fetch('/api/users', {
+    const res = await fetch('/api/friends', {
       method: 'PUT',
       headers: {
         Accept: 'application/json',

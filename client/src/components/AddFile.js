@@ -7,8 +7,10 @@ function AddFile(selected) {
   const fileInput = useRef(null);
   const [image, setImage] = useState({
     //to update only provide the partition key and the sort key
-    username: selected.selected.username,
-    createdAt: selected.selected.createdAt,
+    name: selected.selected.name,
+    //FOR DYNAMO ONLNY USERNAME AND CREATEDAT
+    // username: selected.selected.username,
+    // createdAt: selected.selected.createdAt,
     // email: selected.selected.email,
     // show: selected.selected.show, 
     // location: selected.selected.location
@@ -18,7 +20,8 @@ function AddFile(selected) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    api.updateAWS(image)
+    // api.updateAWS(image)
+    api.updateFriend(image)
   }
 
   const handleImageUpload = event => {

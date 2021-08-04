@@ -23,10 +23,23 @@ router.post("/api/friends", function(req, res) {
       //   }
       // )
   });
-  router.post("/api/friends"), function(req,res) {
-    Friend.findOneAndUpdate(res.data.name, req.body)
-    .then(console.log(req.data))
-  }
+  // router.put("/api/friends"), function(req,res) {
+  //   Friend.findOneAndUpdate(res.data.name, req.body)
+  //   .then(console.log(req.data))
+  // }
+  router.put('/api/friends', function (req, res) {
+    Friend.findOneAndUpdate({name: req.body.name, 
+          photo: req.body.photo,
+      })
+      // Send response in here
+      .then(friends => res.json(friends))
+
+     .catch(function(err) {
+        console.error(err);
+        res.status(401).json(err)
+    })
+});
+
 
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
