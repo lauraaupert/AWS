@@ -16,7 +16,7 @@ function Search() {
     console.log(value)
 
     result = allData.filter((data) => {
-      return data.username.search(value) !== -1;
+      return data.name.search(value) !== -1;
     });
 
     if (result.length < 1) {
